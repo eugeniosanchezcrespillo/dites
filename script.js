@@ -1,4 +1,5 @@
 const words = [ "has begut oli", "perdre el temps i la llavor", "qui no arrisca no pisca", "anar fora corda", "estic més content que un ginjol", "del teu pa en faras sopes", "mesclar ous i caragols", "cercar na maria per sa cuina"];
+const img   = ["oli.jpg","temps.jpg","arrisca.jpg","corda.jpg","ginjol.jpg","pa.jpg","ous.jpg","cuina.jpg"]
 let selectedWord = "";
 let guessedLetters = [];
 let wrongGuesses = 0;
@@ -6,6 +7,7 @@ const maxWrong = 5;
 
 // DOM Elements
 const wordDisplay = document.getElementById("wordDisplay");
+const imgDisplay = document.getElementById("imgDisplay");
 const wrongGuessesDisplay = document.getElementById("wrongGuesses");
 const lettersContainer = document.getElementById("letters");
 const message = document.getElementById("message");
@@ -82,11 +84,20 @@ function handleGuess(letter, button) {
 	//--------------------------------------------------------------
 	//console.log("entro vocal",letter)
 	//--------------------------------------------------------------
-	
-	guessedLetters.push(letter);
-	guessedLetters.push(vowels[vowels.indexOf(letter)+1]);
-	guessedLetters.push(vowels[vowels.indexOf(letter)+2]);
-	updateWordDisplay();
+	if (selectedWord.includes(letter) ||
+	    selectedWord.includes(vowels[vowels.indexOf(letter)+1]) ||
+	    selectedWord.includes(vowels[vowels.indexOf(letter)+1])
+	   )
+	{
+		
+		guessedLetters.push(letter);
+		guessedLetters.push(vowels[vowels.indexOf(letter)+1]);
+		guessedLetters.push(vowels[vowels.indexOf(letter)+2]);
+		updateWordDisplay();
+	}else{
+		wrongGuesses++;
+   		updateWrongGuesses();	
+	}
   }else if (selectedWord.includes(letter)) {
     guessedLetters.push(letter);
     updateWordDisplay();
