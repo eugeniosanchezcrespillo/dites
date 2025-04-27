@@ -20,6 +20,12 @@ function initGame() {
   wrongGuesses = 0;
   message.textContent = "";
   restartBtn.style.display = "none";
+  /* IMG */
+  const newImage = document.createElement('img');
+  newImage.src = img[words.indexOf(selectedWord)];
+  newImage.alt = img[words.indexOf(selectedWord)];
+  imgDisplay.appendChild(newImage);
+  /* END IMG */	
   updateWordDisplay();
   updateWrongGuesses();
   generateLetterButtons();
